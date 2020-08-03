@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import './App.css';
 import allActions from './actions';
 
+import Header from './components/header/Header';
 
 function App() {
 
@@ -14,23 +15,26 @@ function App() {
   const user = { name: "Sapinho" }
 
   return (
-    <div className="App">
-      {
-        currentUser.loggedIn ?
-          <>
-            <h1>Hello, {currentUser.user.name}</h1>
-            <button onClick={() => dispatch(allActions.userActions.logOut())}>Logout</button>
-          </>
-          :
-          <>
-            <h1>Login</h1>
-            <button onClick={() => dispatch(allActions.userActions.setUser(user))}>Login as Rei</button>
-          </>
-      }
-      <h1>Counter: {counter}</h1>
-      <button onClick={() => dispatch(allActions.counterActions.increment())}>Increase Counter</button>
-      <button onClick={() => dispatch(allActions.counterActions.decrement())}>Decrease Counter</button>
-    </div>
+    <>
+      <Header />
+      <div className="App">
+        {
+          currentUser.loggedIn ?
+            <>
+              <h1>Hello, {currentUser.user.name}</h1>
+              <button onClick={() => dispatch(allActions.userActions.logOut())}>Logout</button>
+            </>
+            :
+            <>
+              <h1>Login</h1>
+              <button onClick={() => dispatch(allActions.userActions.setUser(user))}>Login as Rei</button>
+            </>
+        }
+        <h1>Counter: {counter}</h1>
+        <button onClick={() => dispatch(allActions.counterActions.increment())}>Increase Counter</button>
+        <button onClick={() => dispatch(allActions.counterActions.decrement())}>Decrease Counter</button>
+      </div>
+    </>
   );
 }
 
